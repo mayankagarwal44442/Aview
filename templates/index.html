@@ -1,0 +1,95 @@
+<html>
+
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/cover/">
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">Data Analytics Team</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+    <div class="container">
+        <div class="container">
+            <br>
+            <form action="{{url_for('process')}}" method="post">
+                <div class="form-group">
+                    <h3>Youtube Live Chat Analysis:</h3><br>
+                    <label for="">YouTube URL:</label>
+                    <input type="text" class="form-control" name="chat_link" placeholder="Enter YouTube URL">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <hr>
+        <h3 style="text-align: center">_________</h3>
+        <hr>
+        <form action="{{url_for('chatfile')}}" method="post">
+            <div class="container">
+                <h3>A-VIEW Chat Analysis:</h3>
+                <br>
+                <!-- <div class="custom-file">
+                    <input type="file" class="custom-file-input" name="chat_path" id="customFile">
+                    <label class="custom-file-label" name="chat_path" for="chat_path">Choose Chat File</label>
+                </div> -->
+                <input type="file" class="btn btn-primary" name="chat_path">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+        <hr>
+        <h3 style="text-align: center">_________</h3>
+        <hr>
+        <div class="container">
+            <br>
+            <form action="{{url_for('video')}}" method="post">
+                <div class="form-group">
+                    <h3>Video Analysis:</h3><br>
+                    <label for="">YouTube URL:</label>
+                    <input type="text" class="form-control" name="video_link" placeholder="Enter YouTube URL">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
+            <br>
+
+            <form action="{{url_for('transcript')}}" method="post">
+               
+                    <label for="">Transcript Path:</label>
+                    <br>
+                    <input type="file" class="btn btn-primary" name="transcript_path">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                
+            </form>
+        </div>
+    </div>
+
+    <!-- <form action="{{url_for('process')}}" method="get">
+            <p>Enter youtube url:</p>
+            <p><input autofocus type="text" name="link" /> </p>
+            <p>Enter path to chat file</p>
+            <p><input type="text" name="chat_path" /> </p>
+            <input type="submit" value="submit">
+        </form> -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+html,
+body {
+  height: 100%;
+  background-color: #333;
+  color:white;
+}
+
+body {
+  padding-top: 5rem;
+}
+.starter-template {
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
