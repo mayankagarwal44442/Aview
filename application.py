@@ -254,7 +254,7 @@ def identify_operational(youtube_questions):
 
 
 def selenium(link):
-
+    
 
     chromeOptions = Options()
     chromeOptions.add_argument("--ignore-certificate-errors")
@@ -301,68 +301,62 @@ def operational(youtube_chats):
 """ Route for Processing YouTube live chat files """
 @app.route('/process', methods = ['GET', 'POST'])
 def process():
-		time.sleep(2)
 
-		return render_template("showgraph.html", length_operational = 10.77, length_non_operational = 89.23)
+    if request.method == 'POST':
+        link = request.form.get('chat_link')
 
+        youtube_chats = selenium(link)
 
-    # if request.method == 'POST':
-    #     link = request.form.get('link')
-
-    #     youtube_chats = selenium(link)
-
-    #     if(isinstance(youtube_chats,(list,))):
-    #         youtube_operational = operational(youtube_chats)
+        if(isinstance(youtube_chats,(list,))):
+            youtube_operational = operational(youtube_chats)
             
-    #         length_chats = len(youtube_chats)
-    #         length_operational = len(youtube_operational)
-    #         length_non_operational = length_chats - length_operational
+            length_chats = len(youtube_chats)
+            length_operational = len(youtube_operational)
+            length_non_operational = length_chats - length_operational
 
-    #     return render_template("showgraph.html", length_operational = length_operational, length_non_operational = length_non_operational)
-    # else:
-    #     return redirect(url_for("index"))
+        return render_template("showgraph.html", length_operational = length_operational, length_non_operational = length_non_operational)
+    else:
+        return redirect(url_for("index"))
 
-    # return render_template("process.html", link = readfiles)
+    return render_template("process.html", link = readfiles)
 
 """ Route for Processing Chat files """
 @app.route('/chatfile', methods = ['GET', 'POST'])
 def chatfile():
-			time.sleep(1)
-			return render_template("showgraph.html", length_operational = 80.23, length_non_operational = 19.77)
 
-    # if request.method == "POST":
-    #     chat_path = request.form.get('chat_path')
+    if request.method == "POST":
+        chat_path = request.form.get('chat_path')
 
 
-    #     with open(chat_path) as file:
-    #         readfiles = file.read().split("\n")
+        with open(chat_path) as file:
+            readfiles = file.read().split("\n")
 
-    #     operational_1 = operational(readfiles)
+        operational_1 = operational(readfiles)
 
-    #     # Get total number of Messages, Operational and Non-Operational messages
-    #     length_chat_file = len(readfiles)
-    #     length_operational = len(operational_1)
-    #     length_non_operational = length_chat_file - length_operational
+        # Get total number of Messages, Operational and Non-Operational messages
+        length_chat_file = len(readfiles)
+        length_operational = len(operational_1)
+        length_non_operational = length_chat_file - length_operational
 
-    #     # questions = identify_questions(readfiles)
-    #     # operational_questions = identify_operational(questions)
+        # questions = identify_questions(readfiles)
+        # operational_questions = identify_operational(questions)
 
-    #     # print("Operational questions: ")
-    #     # print(operational_questions)
+        # print("Operational questions: ")
+        # print(operational_questions)
 
 
 
-    #     # Call function to create a pie chart showing Operational vs Non-Operational Problems
-    #     return render_template("showgraph.html", length_operational = length_operational, length_non_operational = length_non_operational)
+        # Call function to create a pie chart showing Operational vs Non-Operational Problems
+        return render_template("showgraph.html", length_operational = length_operational, length_non_operational = length_non_operational)
 
-    # else:
-    #     return redirect(url_for("index"))
+    else:
+        return redirect(url_for("index"))
 
 
 """ Route for Processing video """
 @app.route('/video', methods = ['GET', 'POST'])
 def video():
-    time.sleep(4)
+
     if request.method == 'POST':
         link = request.form.get('video_link')
 
@@ -403,33 +397,31 @@ def video():
 """ Route for Processing transcript files """
 @app.route('/transcript', methods = ['GET', 'POST'])
 def transcript():
-	time.sleep(2)
-	return render_template("showgraph.html", length_operational = 13.17, length_non_operational = 86.83)
 
-    # if request.method == "POST":
-    #     transcript_path = request.form.get('transcript_path')
+    if request.method == "POST":
+        transcript_path = request.form.get('transcript_path')
 
-    #     with open(transcript_path) as file:
-    #         text = file.read()
+        with open(transcript_path) as file:
+            text = file.read()
 
-    #     segmenter = DeepSegment('deepsegment_eng_v1/config.json')
+        segmenter = DeepSegment('deepsegment_eng_v1/config.json')
 
-    #     var = segmenter.segment(text)
+        var = segmenter.segment(text)
 
-    #     operational_1 = operational(var)
+        operational_1 = operational(var)
 
-    #     length_chat_file = len(var)
-    #     length_operational = len(operational_1)
-    #     length_non_operational = length_chat_file - length_operational
+        length_chat_file = len(var)
+        length_operational = len(operational_1)
+        length_non_operational = length_chat_file - length_operational
 
    
-    #     # Call function to create a pie chart showing Operational vs Non-Operational Problems
-    #     # draw_figure(length_operational, length_non_operational)
+        # Call function to create a pie chart showing Operational vs Non-Operational Problems
+        # draw_figure(length_operational, length_non_operational)
 
-    #     return render_template("showgraph.html", length_operational = length_operational, length_non_operational = length_non_operational)
+        return render_template("showgraph.html", length_operational = length_operational, length_non_operational = length_non_operational)
         
-    # else:
-    #     return redirect(url_for("index"))    
+    else:
+        return redirect(url_for("index"))    
 
 
 @app.route('/')
@@ -437,4 +429,4 @@ def index():
     return render_template("index.html")
 
 if __name__ == '__main__':
-   app.run(debug = True)
+   app.run()
